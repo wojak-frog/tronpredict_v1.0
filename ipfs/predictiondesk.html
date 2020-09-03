@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    
+    <header>
+        
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<meta name="description" content="Predict price movements of multiple crypto assets">
+		<meta name="author" content="Azanial">
+        
+        <link rel="stylesheet" href="./web.css" />
+        
+		<title>TronPredict</title>
+        
+    </header>
+    
+    <body>
+        
+        <div id="menuwrap"><div id="menu"></div></div>
+        <div id="pagewrap"><div id="loadpage"></div></div>
+        
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/tronweb.js"></script>
+        
+        <script src="./js/coins.js"></script>
+        <script src="./js/abi.js"></script>
+        <script src="./js/app.js"></script>
+        
+        <script type="text/javascript">
+            
+            var wscreen = screen.availWidth;
+            
+            if(wscreen > 600) {
+                var pw = wscreen-117;
+                var pwtxt = pw + "px";
+                
+                $('#pagewrap').css('width', pwtxt);
+                $('#pagewrap').css('height', '100%');
+                $('#pagewrap').css('padding-bottom', '20px');
+                $('#pagewrap').css('position', 'fixed');
+                $('#pagewrap').css('top', '0');
+                $('#pagewrap').css('left', '110px');
+                $('#pagewrap').css('overflow-y', 'auto');
+                
+                $('#menuwrap').css('width', '105px');
+                $('#menuwrap').css('height', '100%');
+                $('#menuwrap').css('position', 'fixed');
+                $('#menuwrap').css('top', '0');
+                $('#menuwrap').css('left', '0');
+                
+                $('#menu').load('./pages/widemenu.html');
+            } else {
+                var mw = wscreen-14;
+                var mwtxt = mw + "px";
+                
+                var ppb = 20 + 40;
+                var ppbtxt = ppb + "px";
+                
+                $('#pagewrap').css('padding-bottom', ppbtxt);
+                
+                $('#menuwrap').css('width', mwtxt);
+                $('#menuwrap').css('position', 'fixed');
+                $('#menuwrap').css('bottom', '20px');
+                $('#menuwrap').css('left', '7px');
+                $('#menuwrap').css('z-index', '10000');
+                
+                $('#menu').load('./pages/narrowmenu.html');
+            }
+            
+            var query = window.location.search.substring(1);
+            var vars = query.split('&');
+            var page = vars[0];
+            
+            $('#loadpage').load('./pages/'+page+'.html');
+            
+            function openpage(pg) {
+                if(pg == 'docs') {
+                    window.open('https://docs.tronpredict.com');
+                } else {
+                    window.location = './predictiondesk.html?'+pg;
+                }
+            }
+            
+        </script>
+        
+    </body>
+    
+</html>

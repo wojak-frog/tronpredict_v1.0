@@ -1,0 +1,59 @@
+<div>&nbsp;</div>
+
+<div id="coinsicon" style="cursor:pointer;" onclick="openpage('weekcoin')">
+    <img src="images/coins.png" style="width:35px;vertical-align:middle;" />
+</div>
+
+<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+
+<div id="briefcaseicon" style="cursor:pointer;" onclick="openpage('predictions')">
+    <img src="images/briefcase.png" style="width:35px;vertical-align:middle;" />
+</div>
+
+<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+
+<div id="walleticon" style="cursor:pointer;" onclick="openpage('wallet')">
+    <img src="images/wallet.png" style="width:35px;vertical-align:middle;" />
+</div>
+
+<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+
+<div id="docsicon" style="cursor:pointer;" onclick="openpage('docs')">
+    <img src="images/docs.png" style="width:35px;vertical-align:middle;" />
+</div>
+
+<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+
+<div class="networkloaded" style="font-size:0.7em;font-weight:bold;"></div>
+
+<div id="logo" style="position:fixed;bottom:30px;left:10px;">
+    <img src="images/logo.png" style="width:85px;vertical-align:middle;" />
+</div>
+
+<script type="text/javascript">
+    
+    if(page == "daycoin" || page == "weekcoin") {
+        $('#coinsicon').html('<img src="images/coins_white.png" style="width:35px;vertical-align:middle;" />');
+    } else {
+        $('#coinsicon').html('<img src="images/coins.png" style="width:35px;vertical-align:middle;" />');
+    }
+    
+    if(page == "predictions") {
+        $('#briefcaseicon').html('<img src="images/briefcase_white.png" style="width:35px;vertical-align:middle;" />');
+    } else {
+        $('#briefcaseicon').html('<img src="images/briefcase.png" style="width:35px;vertical-align:middle;" />');
+    }
+    
+    if(page == "wallet") {
+        $('#walleticon').html('<img src="images/wallet_white.png" style="width:35px;vertical-align:middle;" />');
+    } else {
+        $('#walleticon').html('<img src="images/wallet.png" style="width:35px;vertical-align:middle;" />');
+    }
+    
+    if(page == "docs") {
+        $('#docsicon').html('<img src="images/docs_white.png" style="width:35px;vertical-align:middle;" />');
+    } else {
+        $('#docsicon').html('<img src="images/docs.png" style="width:35px;vertical-align:middle;" />');
+    }
+    
+</script>

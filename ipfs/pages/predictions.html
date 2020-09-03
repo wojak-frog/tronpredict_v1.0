@@ -1,0 +1,244 @@
+<style type="text/css">
+    
+    body {
+        background-color: #222;
+    }
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+    ::-webkit-scrollbar-track {
+        display: none;
+    }
+    ::-webkit-scrollbar-thumb {
+        display: none; 
+    }
+    .spacer {
+        font-size: 0.5em;
+    }
+    .heading {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #eee;
+    }
+    .accnet, .preds {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #444;
+        color: #fff;
+    }
+    .more {
+        width: 100%;
+        padding-bottom: 5px;
+        background-color: #444;
+        color: #fff;
+    }
+    .accnetcol {
+        width: 33%;
+        text-align: center;
+        font-size: 0.75em;
+    }
+    .acc, .net, .cnt {
+        padding-bottom: 5px;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+    .popupback {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        background-color: #555;
+        opacity: 0.5;
+    }
+    .popup {
+        width: 70%;
+        height: 70%;
+        position: fixed;
+        top: 15%;
+        left: 15%;
+        z-index: 10001;
+        background-color: #222;
+        border: 2px solid #111;
+        color: #fff;
+    }
+    .popupclose {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background-color: #333;
+        border-bottom: 2px solid #111;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+    .confirmtitle {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #555;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #eee;
+    }
+    .confirmlabel, .confirmtext {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        vertical-align: top;
+        font-size: 0.8em;
+        color: #eee;
+    }
+    .confirmlabel {
+        width: 40%;
+        text-align: right;
+        font-weight: bold;
+    }
+    .confirmtext {
+        width: 60%;
+        text-align: left;
+    }
+    .confirmline, .confirmerror {
+        text-align: center;
+    }
+    .confirmbutton, .morebutton {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .morebutton {
+        width: 40%;
+        background-color: #000;
+        font-size: 0.9em;
+        position: relative;
+        left: 30%;
+    }
+    .confirmbutton {
+        width: 80%;
+        background-color: green;
+    }
+    .confirmerror {
+        font-size: 0.8em;
+        font-weight: bold;
+        color: red;
+    }
+    .nopreds {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+        font-size: 0.85em;
+    }
+    .predrow {
+        border-bottom: 2px solid #666;
+    }
+    .predrowrow {
+        cursor: pointer;
+    }
+    .predstxt, .predsstk, .predsimg {
+        padding: 5px;
+        padding-bottom: 10px;
+        font-size: 0.85em;
+    }
+    .predsimg {
+        width: 55px;
+    }
+    .predstxt {
+        width: 60%;
+    }
+    .predsstk {
+        width: auto;
+        text-align: right;
+    }
+    
+    
+</style>
+
+<div class="heading">YOUR PREDICTIONS</div>
+
+<div class="spacer">&nbsp;</div>
+
+<div class="accnet">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td class="accnetcol"><div class="acc">0x0</div><div>ACCOUNT</div></td>
+            <td class="accnetcol"><div class="net"></div><div>NETWORK</div></td>
+            <td class="accnetcol"><div class="cnt">0x0</div><div>SMART CONTRACT</div></td>
+        </tr>
+    </table>
+</div>
+
+<div class="spacer">&nbsp;</div>
+
+<div class="preds"></div>
+<div class="more"></div>
+
+<div class="spacer">&nbsp;</div>
+
+<div class="popupback" style="display:none;"></div>
+
+<!-- no provider -->
+<div class="popup" id="noprovider" style="display:none;">
+    <div class="popupclose" >&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div style="text-align:center;font-size:0.85em;">
+        [ERROR]<br /><br />Unsupported Network. Please select<br /><b>Mainnet (trongrid)</b><br />or<br /><b>Shasta Testnet</b><br />on your TronLink Wallet.
+    </div>
+</div>
+
+<!-- view prediction -->
+<div class="popup" id="predview" style="display:none;">
+    <div class="popupclose" onclick="popupclose()"><b>&#215</b></div>
+    <div class="confirmtitle"><span class="predictionimg"></span> YOUR PREDICTION</div>
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td class="confirmlabel">Coin Pair:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictioncoinpair"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Prediction:&nbsp;&nbsp;</td><td class="confirmtext"><div class="prediction"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Current Price:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictioncurrentprice"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Close Price:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictioncloseprice"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Date Prediction Made:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictiondatetime"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Stake:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictionstake"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Reward:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictionreward"></div></td>
+        </tr>
+        <tr>
+            <td class="confirmlabel">Pay Out:&nbsp;&nbsp;</td><td class="confirmtext"><div class="predictionpayout"></div></td>
+        </tr>
+    </table>
+    <div style="border-top:1px solid #555;">&nbsp;</div>
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td class="confirmlabel"></td><td class="confirmtext"><div class="predictionconfirm"></div></td>
+        </tr>
+    </table>
+</div>
+
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+<script type="text/javascript">
+    
+    $('.acc').text(sessionStorage.getItem('aznl_account'));
+    $('.net').text(sessionStorage.getItem('aznl_networktext'));
+    $('.cnt').text(sessionStorage.getItem('aznl_contract'));
+    
+</script>

@@ -1,0 +1,21 @@
+body {
+    padding: 0;
+    font-family: 'Zapf Dingbats', sans-serif;
+}
+table {
+    width: 100%;
+}
+#menuwrap {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #000;
+    text-align: center;
+    color: #fff;
+}
+#pagewrap {
+    overflow-y: scroll;
+}
+.form-hint {
+    padding-top: 5px;
+    font-size: 0.9em;
+}

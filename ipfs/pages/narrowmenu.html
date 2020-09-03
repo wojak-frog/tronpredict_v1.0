@@ -1,0 +1,53 @@
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td id="coinsicon" style="width:20%;text-align:center;" onclick="openpage('daycoin')">
+            <img src="images/coins.png" style="height:20px;vertical-align:middle;" />
+        </td>
+        <td id="walleticon" style="width:20%;text-align:center;" onclick="openpage('wallet')">
+            <img src="images/wallet.png" style="height:20px;vertical-align:middle;" />
+        </td>
+        <td id="briefcaseicon" style="width:20%;text-align:center;" onclick="openpage('predictions')">
+            <img src="images/briefcase.png" style="height:20px;vertical-align:middle;" />
+        </td>
+        <td id="usericon" style="width:20%;text-align:center;" onclick="openpage('profile')">
+            <img src="images/user.png" style="height:20px;vertical-align:middle;" />
+        </td>
+        <td id="azanialicon" style="width:20%;text-align:center;" onclick="openpage('azanial')">
+            <img src="images/azanial.png" style="height:20px;vertical-align:middle;" />
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    
+    if(page == "daycoin") {
+        $('#coinsicon').html('<img src="images/coins_white.png" style="height:20px;vertical-align:middle;" />');
+    } else {
+        $('#coinsicon').html('<img src="images/coins.png" style="height:20px;vertical-align:middle;" />');
+    }
+    
+    if(page == "wallet") {
+        $('#walleticon').html('<img src="images/wallet_white.png" style="height:20px;vertical-align:middle;" />');
+    } else {
+        $('#walleticon').html('<img src="images/wallet.png" style="height:20px;vertical-align:middle;" />');
+    }
+    
+    if(page == "predictions") {
+        $('#briefcaseicon').html('<img src="images/briefcase_white.png" style="height:20px;vertical-align:middle;" />');
+    } else {
+        $('#briefcaseicon').html('<img src="images/briefcase.png" style="height:20px;vertical-align:middle;" />');
+    }
+    
+    if(page == "profile") {
+        $('#usericon').html('<img src="images/user_white.png" style="height:20px;vertical-align:middle;" />');
+    } else {
+        $('#usericon').html('<img src="images/user.png" style="height:20px;vertical-align:middle;" />');
+    }
+    
+    if(page == "azanial") {
+        $('#azanialicon').html('<img src="images/azanial_white.png" style="height:20px;vertical-align:middle;" />');
+    } else {
+        $('#azanialicon').html('<img src="images/azanial.png" style="height:20px;vertical-align:middle;" />');
+    }
+    
+</script>

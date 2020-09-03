@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    
+    <header>
+        
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<meta name="description" content="Azanial - Predict price movements of multiple crypto assets">
+		<meta name="author" content="Azanial">
+        
+        <link rel="shortcut icon" href="./images/favicon.ico" />
+        <link rel="stylesheet" href="./web.css" />
+        
+        <!--script src="./js/tronweb.js"></script-->
+        <script src="./js/jquery.min.js"></script>
+        
+		<title></title>
+        
+    </header>
+    
+    <body>
+        
+        Name: <input type="text" id="name" value="" /><br />
+        Amount: <input type="text" id="amount" value="" /><br />
+        
+        <button onclick="gettronweb()">GET TRONWEB</button><br />
+        <button onclick="setname()">SETNAME</button><br />
+        <button onclick="getname()">GETNAME</button>
+        
+        <div id="address"></div>
+        <div id="fullnode"></div>
+        
+        <script type="text/javascript">
+            
+            var contract = 'TNF1Ym1XtrDmCkEjbjroAaVBG2ezZHM5JS';
+            
+            console.log(window);
+            console.log(window.tronWeb);
+            
+            window.onload = function() {
+                console.log(window.tronWeb);
+                this.strt();
+            };
+            
+            async function strt() {
+                const tronWeb = await window.tronWeb;
+                
+                $('#address').text(tronWeb.defaultAddress.base58);
+                $('#fullnode').text(tronWeb.fullNode.host);
+            }
+            
+            async function gettronweb(){
+                if(window.tronWeb && window.tronWeb.defaultAddress.base58){
+                    $('#address').text(window.tronWeb.defaultAddress.base58);
+                    $('#fullnode').text(window.tronWeb.fullNode.host);
+                }
+            }
+            
+            async function setname() {
+                var name = document.getElementById('name').value;
+                var amnt = document.getElementById('amount').value;
+                
+                var val = amnt * 1000000;
+                
+                let cont = await window.tronWeb.contract().at(contract);
+                let setname = await cont.setname(name).send({callValue:val,shouldPollResponse:true});
+                console.log(setname);
+            }
+            
+            async function getname() {
+                let cont = await window.tronWeb.contract().at(contract);
+                let getname = await cont.getname().call();
+                console.log(getname);
+            }
+            
+            setInterval(function(){
+                console.log = function(msg){
+                   //console.warn(msg); // if you need to print the output
+                }
+            }, 1000);
+            
+        </script>
+        
+    </body>
+    
+</html>

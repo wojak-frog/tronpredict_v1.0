@@ -1,0 +1,160 @@
+<style type="text/css">
+    
+    h2 {
+        text-align: center;
+    }
+    a {
+        color: #369;
+        font-weight: normal;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #555;
+        font-weight: normal;
+        text-decoration: none;
+    }
+    a:active, a:visited {
+        color: #369;
+        font-weight: normal;
+        text-decoration: none;
+    }
+    .submit-cover {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 90%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    .loading {
+        width: 100%;
+        text-align: center;
+        font-size: 0.9em;
+        position: fixed;
+        top: 45%;
+        left: 0;
+        z-index: 1001;
+    }
+    .input-label {
+        font-size: 0.9em;
+        padding-bottom: 5px;
+    }
+    .input-element, .button-element {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #000;
+        font-size: 0.9em;
+    }
+    .button-element {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: #333;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+    }
+    .form-hint {
+        text-align: center;
+        font-size: 0.9em;
+    }
+    .message, .privacy {
+        text-align: center;
+        font-size: 0.9em;
+    }
+    
+</style>
+
+<h2>Connect to TronLink</h2>
+
+<div id="check" style="display:block;">
+    <div class="message"></div>
+    
+    <div class="form-hint">TronPredict is built to work with the TronLink Wallet.</div>
+    <div style="border-bottom:1px solid #000;">&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="form-hint"><b>TronLink Wallet Extension Installed?</b></div>
+    <div>&nbsp;</div>
+    <div class="button-line">
+        <div class="button-element" onclick="tronlinkconnected()" style="background-color:green;">YES, CONNECT</div>
+        <div id="connectionerror" class="form-hint" style="color:red;"></div>
+    </div>
+    <div style="border-bottom:1px solid #000;">&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="form-hint"><b>TronLink Wallet Extension Not Installed?</b></div>
+    <div>&nbsp;</div>
+    <div class="button-line">
+        <div class="button-element" onclick="tronlinkdownload()"><span class="chromeimg"></span>&nbsp;DOWNLOAD FOR CHROME</div>
+    </div>
+    <div class="button-line">
+        <div class="button-element" onclick="tronlinkdownload()"><span class="braveimg"></span>&nbsp;DOWNLOAD FOR BRAVE</div>
+    </div>
+</div>
+
+<div id="connected" style="display:none;">
+    <div class="message"></div>
+    
+    <div class="form-hint">TronLink Wallet Connected.<br /><br /><span id="istronlinkconnected"></span></div>
+
+    <div>&nbsp;</div>
+
+    <div class="button-line">
+        <div class="button-element" onclick="gotodesk()" style="background-color:green;"><span id="tronlinkconnectedbuttontext"></span></div>
+    </div>
+</div>
+
+<div class="privacy"><a href="https://docs.TronPredict.com/?privacy" target="_blank">Privacy Policy & Terms of Service</a></div>
+
+<script type="text/javascript">
+    
+    $('.chromeimg').html('<img src="./images/chrome.png" style="height:30px;vertical-align:middle;" />');
+    $('.braveimg').html('<img src="./images/brave.png" style="height:30px;vertical-align:middle;" />');
+    
+    async function tronlinkconnected() {
+        if(window.tronWeb.defaultAddress.base58) {
+            var network;
+            
+            if(window.tronWeb.fullNode.host == 'https://api.trongrid.io') {
+                network = 'Tron Mainnet';
+            } else if(window.tronWeb.fullNode.host == 'https://api.shasta.trongrid.io') {
+                network = 'Tron Shasta Testnet';
+            } else {
+                network = 'Unsupported Network';
+            }
+            
+            $('#istronlinkconnected').html(
+                '<b>Account</b><br/>'+window.tronWeb.defaultAddress.base58+'<br /><br /><b>Network</b><br />'+network
+            );
+            $('#tronlinkconnectedbuttontext').text('GO TO PREDICTION DESK');
+
+            $('#check').css('display', 'none');
+            $('#connected').css('display', 'block');
+        } else {
+            $('#connectionerror').html('ERROR: Account not found! Please ensure that you have logged in to your TronLink Wallet.');
+        }
+    }
+    
+    function tronlinkconnect() {
+        $('#tronlinkbuttontext').text('CONNECT TRONLINK');
+
+        $('#check').css('display', 'none');
+        $('#connected').css('display', 'none');
+    }
+    
+    function tronlinkdownload(browser) {
+        window.open("https://chrome.google.com/webstore/detail/tronlink/ibnejdfjmmkpcnlpebklmnkoeoihofec");
+    }
+    
+    async function gotodesk() {
+        await sessionStorage.setItem('aznl_account',window.tronWeb.defaultAddress.base58);
+        await sessionStorage.setItem('aznl_network',window.tronWeb.fullNode.host);
+        
+        window.location = './predictiondesk.html?weekcoin';
+    }
+    
+</script>

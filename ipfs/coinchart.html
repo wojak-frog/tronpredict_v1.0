@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    
+    <header>
+        
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<meta name="description" content="Azanial - Predict price movements of multiple crypto assets">
+		<meta name="author" content="Azanial">
+        
+        <link rel="stylesheet" href="./web.css" />
+        
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
+		<title></title>
+        
+    </header>
+    
+    <body style="padding:0;background-color:#000;">
+        
+        <style>
+            
+            .chartclose {
+                padding-top: 8px;
+                padding-bottom: 8px;
+                background-color: #333;
+                border-bottom: 2px solid #111;
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.2em;
+                color: white;
+                cursor: pointer;
+            }
+            
+        </style>
+        
+        <!-- TradingView Widget BEGIN -->
+        <div class="chartclose" onclick="chartclose()"><b>&#215</b></div>
+        <div class="tradingview-widget-container" style="padding:0;">
+            <div id="tradingview_be375" style="padding:0;"></div>
+            
+            <script type="text/javascript">
+                var wscreen = screen.availWidth - 15;
+                var hscreen = screen.availHeight - 100;
+                
+                var symb = "BINANCE:" + sessionStorage.getItem('aznl_currcoin') + "USDT";
+
+                new TradingView.widget(
+                    {
+                        "width": wscreen,
+                        "height": hscreen,
+                        "symbol": symb,
+                        "interval": "5",
+                        "timezone": "Etc/UTC",
+                        "theme": "Dark",
+                        "style": "3",
+                        "locale": "en",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "allow_symbol_change": false,
+                        "container_id": "tradingview_be375"
+                    }
+                );
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+        
+        <script type="text/javascript">
+            
+            function chartclose() {
+                window.location = './predictiondesk.html?weekcoin';
+            }
+            
+        </script>
+        
+    </body>
+    
+</html>
