@@ -91,9 +91,6 @@
     <div class="button-line">
         <div class="button-element" onclick="tronlinkdownload()"><span class="chromeimg"></span>&nbsp;DOWNLOAD FOR CHROME</div>
     </div>
-    <div class="button-line">
-        <div class="button-element" onclick="tronlinkdownload()"><span class="braveimg"></span>&nbsp;DOWNLOAD FOR BRAVE</div>
-    </div>
 </div>
 
 <div id="connected" style="display:none;">
@@ -113,7 +110,6 @@
 <script type="text/javascript">
     
     $('.chromeimg').html('<img src="./images/chrome.png" style="height:30px;vertical-align:middle;" />');
-    $('.braveimg').html('<img src="./images/brave.png" style="height:30px;vertical-align:middle;" />');
     
     async function tronlinkconnected() {
         if(window.tronWeb.defaultAddress.base58) {
@@ -121,10 +117,8 @@
             
             if(window.tronWeb.fullNode.host == 'https://api.trongrid.io') {
                 network = 'Tron Mainnet';
-            } else if(window.tronWeb.fullNode.host == 'https://api.shasta.trongrid.io') {
-                network = 'Tron Shasta Testnet';
             } else {
-                network = 'Unsupported Network';
+                network = 'Unsupported Network, please switch to the Mainnet network';
             }
             
             $('#istronlinkconnected').html(
